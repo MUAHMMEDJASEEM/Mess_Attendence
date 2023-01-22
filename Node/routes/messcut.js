@@ -23,15 +23,12 @@ router.get('/:id', function (req, res, next) {
     });
 });
 router.post('/', function (req, res, next) {
-    var ISToffSet = 330; //IST is 5:30; i.e. 60*5+30 = 330 in minutes 
-offset= ISToffSet*60*1000;
-var ISTTime = new Date(date.getTime()+offset);
     if (req.body.messcut) {
         const newMessCut = new User({
             name: req.body.name,
             usercode: req.body.usercode,
             messcut: req.body.messcut,
-            time: ISTTime.toString()
+            time: req.body.time
         });
         newMessCut.save((err, messcut) => {
             if (err) return console.error(err);
