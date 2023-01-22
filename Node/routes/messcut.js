@@ -24,13 +24,23 @@ router.get('/:id', function (req, res, next) {
 });
 router.post('/', function (req, res, next) {
     if (req.body.messcut) {
+        const offset = new Date().getTimezoneOffset();
+        const indianTime = new Date(new Date().getTime() + offset * 60 * 1000 + 330 * 60 * 1000);
+        const indianTimeFormat = new Intl.DateTimeFormat('en-IN', {
+            year: 'numeric', 
+            month: 'short', 
+            day: '2-digit', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        }).format(indianTime);
         const newMessCut = new User({
             name: req.body.name,
             usercode: req.body.usercode,
             messcut: req.body.messcut,
-            time: new Date().toLocaleString("en-IN")
+            time: indianTimeFormat
         });
-        newMessCut.save((err, messcut) => {
+        newMessCut.save((err,messcut) => {
             if (err) return console.error(err);
             res.json(messcut);
         });
@@ -41,5 +51,4 @@ router.post('/', function (req, res, next) {
         });
     }
 });
-
 module.exports = router;
