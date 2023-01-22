@@ -31,7 +31,7 @@ var ISTTime = new Date(date.getTime()+offset);
             name: req.body.name,
             usercode: req.body.usercode,
             messcut: req.body.messcut,
-            time: ISTTime;
+            time: ISTTime
         });
         newMessCut.save((err, messcut) => {
             if (err) return console.error(err);
