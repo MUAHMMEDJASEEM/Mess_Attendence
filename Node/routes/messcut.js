@@ -32,7 +32,7 @@ router.post('/', function (req, res, next) {
             name: req.body.name,
             usercode: req.body.usercode,
             messcut: req.body.messcut,
-            time: new Date().toLocaleString()
+            time: new Date().toLocaleString("en-IN")
         });
         newMessCut.save((err, messcut) => {
             if (err) return console.log(err);
