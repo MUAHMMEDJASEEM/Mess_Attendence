@@ -22,7 +22,6 @@ router.get('/:id', function (req, res, next) {
             res.json({ messcut: false });
     });
 });
-Copy code
 router.post('/', function (req, res, next) {
     User.findOne({ usercode: req.body.usercode }, function(err, existingUser) {
         if (err) return console.error(err);
